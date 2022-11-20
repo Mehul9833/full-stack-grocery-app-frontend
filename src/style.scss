@@ -1,0 +1,27 @@
+.grocery-app {
+	width: 800px;
+
+	background-color: #bde0fe;
+	margin: 6rem auto 0 auto;
+	padding: 1.5rem;
+
+	border-radius: 10px;
+
+	&__items {
+		height: 300px;
+		overflow: auto;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+
+		svg {
+			font-size: 1.5rem;
+			cursor: pointer;
+			&:not(:last-child) {
+				margin-right: 10px;
+			}
+		}
+	}
+}
