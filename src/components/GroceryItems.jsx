@@ -1,16 +1,8 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
-import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
-import { deleteGroceryItem } from "../utils/handleApi";
+import { Card, CardBody, Button } from "reactstrap";
+import { deleteGroceryItem, updateGrocery } from "../utils/handleApi";
 
 const GroceryItems = (props) => {
-	function updateGroceryItem(id, itemName) {
-		props.setItem(itemName);
-		props.setItemId(id);
-		props.setIsUpdating(true);
-	}
-
 	return (
 		<React.Fragment>
 			<div className="grocery-app__items">
@@ -18,18 +10,36 @@ const GroceryItems = (props) => {
 					return (
 						<Card className="mb-2" key={key}>
 							<CardBody className="grocery-app__item">
-								<p className="mb-0">{item.text}</p>
+								<p
+									className={`mb-0 ${
+										item.isPurchased && "grocery-app__strike"
+									}`}
+								>
+									{item.text}
+								</p>
 								<div className="grocery-app__item-icons">
-									<BiEdit
-										className="icon"
-										onClick={() => updateGroceryItem(item._id, item.text)}
-									/>
-									<AiFillDelete
-										className="icon"
+									<Button
+										onClick={() =>
+											updateGrocery(
+												item._id,
+												item.isPurchased,
+												props.setAllGroceries
+											)
+										}
+										className="me-2"
+										color="warning"
+									>
+										{item.isPurchased ? "Cancel" : "Buy"}
+									</Button>
+
+									<Button
 										onClick={() =>
 											deleteGroceryItem(item._id, props.setAllGroceries)
 										}
-									/>
+										color="danger"
+									>
+										Delete
+									</Button>
 								</div>
 							</CardBody>
 						</Card>
@@ -41,3 +51,8 @@ const GroceryItems = (props) => {
 };
 
 export default GroceryItems;
+
+// <BiEdit
+// 	className="icon"
+// 	onClick={() => updateGroceryItem(item._id, item.text)}
+// />;

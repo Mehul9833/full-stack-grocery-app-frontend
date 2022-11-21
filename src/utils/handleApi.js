@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "https://fullstack-grocery-app-backend.onrender.com/";
+// const baseUrl = "https://fullstack-grocery-app-backend.onrender.com/";
+const baseUrl = "http://localhost:5000";
 
 export const getAllGrocery = (setGrocery) => {
 	axios.get(baseUrl).then(({ data }) => {
@@ -10,7 +11,7 @@ export const getAllGrocery = (setGrocery) => {
 
 export const handleAddGrocery = (text, setText, setGrocery) => {
 	axios
-		.post(`${baseUrl}/save`, { text })
+		.post(`${baseUrl}/save`, { text, isPurchased: false })
 		.then((data) => {
 			console.log("the data is", data);
 			setText("");
@@ -21,22 +22,13 @@ export const handleAddGrocery = (text, setText, setGrocery) => {
 		});
 };
 
-export const updateGrocery = (
-	itemId,
-	item,
-	setItem,
-	setGrocery,
-	setIsUpdating,
-	setItemId
-) => {
-	const data = { _id: itemId, text: item };
+export const updateGrocery = (itemId, isPurchased, setGrocery) => {
+	console.log("heere", isPurchased);
+	const data = { _id: itemId, isPurchased: !isPurchased };
 	axios
 		.post(`${baseUrl}/update`, data)
 		.then((data) => {
-			setItem("");
-			setIsUpdating(false);
 			getAllGrocery(setGrocery);
-			setItemId("");
 		})
 		.catch((err) => {
 			console.log("Error while Updating");

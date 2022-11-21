@@ -10,16 +10,41 @@ function App() {
 	const [item, setItem] = useState("");
 	const [isUpdating, setIsUpdating] = useState(false);
 	const [itemId, setItemId] = useState("");
+	const [month, setMonth] = useState("");
 
 	useEffect(() => {
 		getAllGrocery(setAllGroceries);
+		getMonth();
 	}, []);
+
+	const months = [
+		"January",
+		"February",
+		"March",
+		"April",
+		"May",
+		"June",
+		"July",
+		"August",
+		"September",
+		"October",
+		"November",
+		"December",
+	];
+
+	function getMonth() {
+		const date = new Date();
+		setMonth(months[date.getMonth()]);
+	}
 
 	return (
 		<div className="App">
 			<h1 className="text-center">Grocery App</h1>
 
 			<div className="grocery-app">
+				<h5 className="text-center">
+					Grocery Items of <mark className="rounded">{month}</mark> Month
+				</h5>
 				<InputBox
 					item={item}
 					setItem={setItem}
