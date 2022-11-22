@@ -31,7 +31,7 @@ function App() {
 		getAllGrocery(setAllGroceries);
 		const date = new Date();
 		setMonth(months[date.getMonth()]);
-	}, []);
+	}, [months]);
 
 	
 
