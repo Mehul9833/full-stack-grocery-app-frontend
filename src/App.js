@@ -12,7 +12,10 @@ function App() {
 	const [itemId, setItemId] = useState("");
 	const [month, setMonth] = useState("");
 	
-	const months = [
+	
+
+	useEffect(() => {
+		const months = [
 		"January",
 		"February",
 		"March",
@@ -26,12 +29,10 @@ function App() {
 		"November",
 		"December",
 	];
-
-	useEffect(() => {
 		getAllGrocery(setAllGroceries);
 		const date = new Date();
 		setMonth(months[date.getMonth()]);
-	}, [months]);
+	}, []);
 
 	
 
