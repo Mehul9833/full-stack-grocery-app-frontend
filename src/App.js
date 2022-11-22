@@ -30,7 +30,6 @@ function App() {
 	useEffect(() => {
 		getAllGrocery(setAllGroceries);
 		const date = new Date();
-		const month = date.
 		setMonth(months[date.getMonth()]);
 	}, []);
 
