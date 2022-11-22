@@ -11,12 +11,7 @@ function App() {
 	const [isUpdating, setIsUpdating] = useState(false);
 	const [itemId, setItemId] = useState("");
 	const [month, setMonth] = useState("");
-
-	useEffect(() => {
-		getAllGrocery(setAllGroceries);
-		getMonth();
-	}, [getMonth]);
-
+	
 	const months = [
 		"January",
 		"February",
@@ -32,10 +27,15 @@ function App() {
 		"December",
 	];
 
-	function getMonth() {
+	useEffect(() => {
+		getAllGrocery(setAllGroceries);
 		const date = new Date();
 		setMonth(months[date.getMonth()]);
-	}
+	}, [getMonth]);
+
+	
+
+	
 
 	return (
 		<div className="App">
