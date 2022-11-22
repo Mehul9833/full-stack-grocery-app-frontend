@@ -15,7 +15,7 @@ function App() {
 	useEffect(() => {
 		getAllGrocery(setAllGroceries);
 		getMonth();
-	}, []);
+	}, [getMonth]);
 
 	const months = [
 		"January",
