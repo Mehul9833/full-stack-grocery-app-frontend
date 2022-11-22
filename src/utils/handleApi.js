@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseUrl = "https://fullstack-grocery-app-backend.onrender.com/";
-const baseUrl = "http://localhost:5000";
+const baseUrl = "https://grocery-app-backend.onrender.com";
+// const baseUrl = "http://localhost:5000"; //
 
 export const getAllGrocery = (setGrocery) => {
 	axios.get(baseUrl).then(({ data }) => {
